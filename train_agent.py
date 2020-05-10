@@ -89,3 +89,6 @@ if __name__ == "__main__":
     plt.ylabel('Score')
     plt.xlabel('Episode #')
     plt.show()
+
+    #close env
+    env.close()
