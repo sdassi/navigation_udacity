@@ -31,23 +31,17 @@ class Agent():
             action_size (int): dimension of each action
             seed (int): random seed
         """
-        print("begin init")
         self.state_size = state_size
         self.action_size = action_size
         random.seed(seed)
-        print("my network")
         # Q-Network
         self.qnetwork_local = QNetwork(state_size, action_size, seed).to(device)
-        print("my network 1")
         self.qnetwork_target = QNetwork(state_size, action_size, seed).to(device)
-        print("my network 2")
         self.optimizer = optim.Adam(self.qnetwork_local.parameters(), lr=LR)
-        print("replay buffer")
         # Replay memory
         self.memory = ReplayBuffer(action_size, BUFFER_SIZE, BATCH_SIZE, seed)
         # Initialize time step (for updating every UPDATE_EVERY steps)
         self.t_step = 0
-        print("end")
     
     def step(self, state, action, reward, next_state, done):
         # Save experience in replay memory
